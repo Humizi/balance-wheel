@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { DialogComponent } from './dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { CommonModule } from '@angular/common';
+import { DialogComponent } from './dialog.component';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [DialogComponent],

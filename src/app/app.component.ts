@@ -1,9 +1,12 @@
 import * as Highcharts from 'highcharts';
 
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
+
 import { DEFAULT_SETTINGS } from './default-settings';
+import { DialogService } from './core/services/dialog/dialog.service';
 import HighchartsMore from 'highcharts/highcharts-more';
 import HighchartsSolidGauge from 'highcharts/modules/solid-gauge';
+import { WheelSetupDialog } from './core/components/dialogs/wheel-setup/wheel-setup.dialog';
 
 HighchartsMore(Highcharts);
 HighchartsSolidGauge(Highcharts);
@@ -16,7 +19,14 @@ HighchartsSolidGauge(Highcharts);
 export class AppComponent {
   public chart!: Highcharts.Chart;
 
-  public ngOnInit(): void {
+  constructor(
+    private viewContainerRef: ViewContainerRef,
+    private dialogService: DialogService
+  ) {
+    this.dialogService.setContainer(this.viewContainerRef);
+  }
+
+  ngOnInit(): void {
     this.createChart();
   }
 
@@ -87,5 +97,9 @@ export class AppComponent {
         ],
       },
     });
+  }
+
+  openWheelSetup(): void {
+    this.dialogService.open(WheelSetupDialog);
   }
 }
