@@ -1,0 +1,75 @@
+@import "../../../../styles/mixins/bootstrap";
+
+.button {
+  $root: &;
+
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  border-radius: 8px;
+
+  &__icon {
+    margin-right: 16px;
+  }
+
+  &--large {
+    padding: 17px;
+
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--color-white);
+  }
+
+  &--medium {
+    padding: 11px;
+
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--color-white);
+
+    @include media-breakpoint-up(md) {
+      padding: 17px;
+    }
+
+    @media screen and (orientation: landscape) and (max-device-width: 1023px) {
+      padding: 6px 11px;
+    }
+  }
+
+  &--blue {
+    background-color: var(--color-bg-2);
+
+    transition: all 350ms ease;
+
+    &:focus,
+    &:hover {
+      transform: scale3d(1.05, 1.05, 1.01);
+    }
+
+    &#{$root}--disabled {
+      opacity: 0.3;
+
+      pointer-events: none;
+    }
+  }
+
+  &--grey {
+    background-color: var(--color-bg-3);
+
+    transition: all 350ms ease;
+
+    &:focus,
+    &:hover {
+      transform: scale3d(1.02, 1.02, 1.01);
+    }
+
+    &#{$root}--disabled {
+      opacity: 0.3;
+
+      pointer-events: none;
+    }
+  }
+}

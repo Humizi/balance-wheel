@@ -1,0 +1,8 @@
+<img
+  *ngIf="icon"
+  class="button__icon"
+  [src]="'assets/icons/' + icon + '.svg'"
+  width="20"
+  height="20"
+/>
+<span class="button__text"><ng-content></ng-content></span>

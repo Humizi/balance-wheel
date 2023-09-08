@@ -1,0 +1,9 @@
+@import "bootstrap/scss/mixins";
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 375px,
+  md: 768px,
+  mx: 1280px,
+  xl: 1920px,
+);
