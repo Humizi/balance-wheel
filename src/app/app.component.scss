@@ -1,16 +1,4 @@
 :host {
   display: block;
   height: 100vh;
-
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    padding: 40px;
-  }
-
-  .chart {
-    height: 100%;
-  }
 }
