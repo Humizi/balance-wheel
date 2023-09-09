@@ -1,1 +1,7 @@
-<p>wheel-setup works!</p>
+<div *ngIf="step$ | async as step">
+  <p>wheel-setup works!</p>
+  <p>Step {{ step }}</p>
+
+  <button app-button (click)="prevStep()">Prev Step</button>
+  <button app-button (click)="nextStep()">Next Step</button>
+</div>
