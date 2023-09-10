@@ -1,0 +1,16 @@
+@import "../../../../../../../styles/mixins/typo";
+
+.area-life {
+  &__text {
+    &--small {
+      margin-bottom: 20px;
+
+      @include typo--regular-10;
+      color: var(--color-text-gray);
+    }
+  }
+
+  &__title {
+    @include typo--h2;
+  }
+}

@@ -1,11 +1,13 @@
-<form *ngIf="step$ | async as step" [formGroup]="form">
+<form *ngIf="step$ | async as step" [formGroup]="form" class="area-life">
   <ng-container formArrayName="areas">
     <div [formGroup]="getAreaControl(step - 2)">
-      <p>
+      <p class="area-life__text--small">
         Вы можете использовать стандартные категории жизни или же сделать свои.
       </p>
 
-      <h2>Сфера: {{ getAreaControl(step - 2).value.title }}</h2>
+      <h2 class="area-life__title">
+        Сфера: {{ getAreaControl(step - 2).value.title }}
+      </h2>
 
       <app-text-field
         [formControl]="getAreaControl(step - 2).get('title')"

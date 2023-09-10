@@ -1,0 +1,31 @@
+@mixin typo--regular-10 {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@mixin typo--regular-12 {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@mixin typo--regular-13 {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@mixin typo--h2 {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  font-style: normal;
+  font-stretch: normal;
+}

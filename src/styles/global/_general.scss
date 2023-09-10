@@ -9,8 +9,8 @@ html {
   font-size: 16px;
   line-height: 164%;
   font-weight: 400;
-  font-family: var(--font-family-open-sans);
-  color: var(--color-text-1);
+  font-family: var(--font-family-inter);
+  color: var(--color-text-main);
 
   overflow-x: hidden;
 }
@@ -25,11 +25,11 @@ body {
 a {
   display: inline-flex;
 
-  font-family: var(--font-family-open-sans);
+  font-family: var(--font-family-inter);
   text-decoration: none;
   font-size: 12px;
   line-height: 16px;
-  color: var(--color-text-1);
+  color: var(--color-text-main);
 
   cursor: pointer;
 
@@ -53,8 +53,8 @@ select {
 
   font-size: 20px;
   line-height: 120%;
-  font-family: var(--font-family-open-sans);
-  color: var(--color-text-1);
+  font-family: var(--font-family-inter);
+  color: var(--color-text-main);
 
   border: none;
 }
@@ -70,8 +70,8 @@ button {
   font-size: 16px;
   line-height: 22px;
   font-weight: 400;
-  font-family: var(--font-family-open-sans);
-  color: var(--color-text-1);
+  font-family: var(--font-family-inter);
+  color: var(--color-text-main);
 
   background: none;
   border: none;

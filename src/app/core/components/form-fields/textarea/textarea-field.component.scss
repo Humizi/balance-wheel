@@ -1,25 +1,28 @@
+@import "../../../../../styles/mixins/typo";
+
 :host {
   display: block;
   max-width: 100%;
 
-  .text-field {
+  .textarea-field {
     position: relative;
     display: block;
     max-width: 100%;
-    padding: 15px 16px;
+    margin-top: 14px;
+    padding: 7px 12px;
 
-    background-color: var(--color-blue-gray-3);
-    border: 1px solid var(--color-blue-gray-6);
-    border-radius: 16px;
+    background-color: var(--color-gray-main);
+    border: 1px solid var(--color-cyan-main);
+    border-radius: 6px;
 
     &.--transparent {
       background-color: transparent;
 
-      .text-field__input {
-        color: var(--color-text-1);
+      .textarea-field__input {
+        color: var(--color-text-main);
 
         &::placeholder {
-          color: var(--color-text-1);
+          color: var(--color-text-main);
         }
       }
     }
@@ -29,11 +32,13 @@
     }
 
     &__input {
-      color: var(--color-text-1);
+      @include typo--regular-13;
+      color: var(--color-text-main);
+
       background-color: transparent;
 
       &::placeholder {
-        color: var(--color-text-1);
+        color: var(--color-text-main);
       }
     }
   }

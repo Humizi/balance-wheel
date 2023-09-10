@@ -17,37 +17,6 @@
     overflow: hidden;
   }
 
-  &--not-full {
-    top: 40%;
-
-    height: fit-content;
-    margin: 0 15px;
-
-    border-radius: 10px;
-
-    @include media-breakpoint-up(mx) {
-      top: 0;
-
-      margin: 0;
-    }
-
-    #{$root} {
-      &__body {
-        height: auto;
-      }
-    }
-  }
-
-  &--alternative {
-    #{$root} {
-      &__body {
-        padding: 48px 24px;
-
-        background-color: var(--color-white);
-      }
-    }
-  }
-
   &__close {
     position: absolute;
     top: 17px;
@@ -65,15 +34,15 @@
     position: relative;
 
     height: 100%;
-    padding-top: 67px;
+    padding: 20px 15px;
 
-    background-color: var(--color-bg-1);
+    background-color: var(--color-light-blue-main);
 
     @include media-breakpoint-up(md) {
       margin: 60px 40px;
       padding: 70px 54px 50px;
 
-      background-color: var(--color-white);
+      background-color: var(--color-light-blue-main);
       border-radius: 10px;
     }
 
