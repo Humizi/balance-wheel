@@ -1,0 +1,30 @@
+<form *ngIf="step$ | async as step" [formGroup]="form">
+  <ng-container formArrayName="areas">
+    <div [formGroup]="getAreaControl(step - 2)">
+      <p>
+        Вы можете использовать стандартные категории жизни или же сделать свои.
+      </p>
+
+      <h2>Сфера: {{ getAreaControl(step - 2).value.title }}</h2>
+
+      <app-text-field
+        [formControl]="getAreaControl(step - 2).get('title')"
+        placeholder="Area Name"
+      ></app-text-field>
+
+      <app-number-field
+        [formControl]="getAreaControl(step - 2).get('point')"
+      ></app-number-field>
+
+      <app-textarea-field
+        [formControl]="getAreaControl(step - 2).get('title')"
+      ></app-textarea-field>
+
+      <input
+        type="color"
+        formControlName="color"
+        [value]="getAreaControl(step - 2).value.color"
+      />
+    </div>
+  </ng-container>
+</form>

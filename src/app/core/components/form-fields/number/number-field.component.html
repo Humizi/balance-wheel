@@ -1,0 +1,16 @@
+<div class="text-field" [class.--transparent]="transparent">
+  <label class="text-field__inner">
+    <button (click)="decrease()">-</button>
+    <input
+      class="text-field__input"
+      type="number"
+      min="1"
+      max="10"
+      [placeholder]="placeholder"
+      [ngModel]="data"
+      (ngModelChange)="changeData($event)"
+      [disabled]="disabled"
+    />
+    <button (click)="increase()">+</button>
+  </label>
+</div>

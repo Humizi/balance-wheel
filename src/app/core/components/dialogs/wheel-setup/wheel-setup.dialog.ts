@@ -13,7 +13,7 @@ import { Store } from '@ngrx/store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WheelSetupDialog {
-  step$ = this.store.select(stepSelector);
+  public step$ = this.store.select(stepSelector);
 
   constructor(private store: Store) {}
 

@@ -1,0 +1,13 @@
+<div class="text-field" [class.--transparent]="transparent">
+  <label class="text-field__inner">
+    <textarea
+      class="text-field__input"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [ngModel]="data"
+      (ngModelChange)="changeData($event)"
+      cols="30"
+      rows="10"
+    ></textarea>
+  </label>
+</div>

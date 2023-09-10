@@ -1,10 +1,4 @@
-import {
-  ActionReducer,
-  ActionReducerMap,
-  MetaReducer,
-  createFeatureSelector,
-  createSelector,
-} from '@ngrx/store';
+import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { WizardState, wizardReducer } from './wizard';
 
 import { environment } from '../../environments/environment';

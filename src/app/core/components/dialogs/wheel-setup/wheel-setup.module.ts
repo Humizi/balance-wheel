@@ -1,13 +1,22 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { AreaLifeComponent } from './steps/area-life/area-life.component';
 import { ButtonModule } from '../../button/button.module';
 import { CommonModule } from '@angular/common';
+import { FirstStepComponent } from './steps/first-step/first-step.component';
+import { FormFieldsModule } from '../../form-fields/form-fields.module';
 import { NgModule } from '@angular/core';
 import { WheelSetupDialog } from './wheel-setup.dialog';
 
 @NgModule({
-  declarations: [WheelSetupDialog],
+  declarations: [WheelSetupDialog, FirstStepComponent, AreaLifeComponent],
   exports: [WheelSetupDialog],
-  imports: [CommonModule, ButtonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FormFieldsModule,
+  ],
 })
 export class WheelSetupDialogModule {}

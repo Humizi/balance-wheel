@@ -6,11 +6,6 @@ export interface ICategory {
 
 export const DEFAULT_SETTINGS: ICategory[] = [
   {
-    title: 'Друзья',
-    point: 5,
-    color: '#7CB5EC',
-  },
-  {
     title: 'Здоровье',
     point: 3,
     color: '#7CB5EC',
@@ -31,8 +26,13 @@ export const DEFAULT_SETTINGS: ICategory[] = [
     color: '#7CB5EC',
   },
   {
-    title: 'Отдых',
-    point: 2,
+    title: 'Друзья',
+    point: 5,
+    color: '#7CB5EC',
+  },
+  {
+    title: 'Саморазвитие',
+    point: 4,
     color: '#7CB5EC',
   },
   {
@@ -41,8 +41,8 @@ export const DEFAULT_SETTINGS: ICategory[] = [
     color: '#7CB5EC',
   },
   {
-    title: 'Саморазвитие',
-    point: 4,
+    title: 'Отдых',
+    point: 2,
     color: '#7CB5EC',
   },
 ];

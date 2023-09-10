@@ -1,0 +1,12 @@
+<div class="text-field" [class.--transparent]="transparent">
+  <label class="text-field__inner">
+    <input
+      class="text-field__input"
+      type="text"
+      [placeholder]="placeholder"
+      [ngModel]="data"
+      (ngModelChange)="changeData($event)"
+      [disabled]="disabled"
+    />
+  </label>
+</div>

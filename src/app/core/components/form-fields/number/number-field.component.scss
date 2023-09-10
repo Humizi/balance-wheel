@@ -1,0 +1,46 @@
+:host {
+  display: block;
+  max-width: 100%;
+
+  .text-field {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    padding: 15px 16px;
+
+    background-color: var(--color-blue-gray-3);
+    border: 1px solid var(--color-blue-gray-6);
+    border-radius: 16px;
+
+    &.--transparent {
+      background-color: transparent;
+
+      .text-field__input {
+        color: var(--color-text-1);
+
+        &::placeholder {
+          color: var(--color-text-1);
+        }
+      }
+    }
+
+    &__inner {
+      display: flex;
+    }
+
+    &__input {
+      color: var(--color-text-1);
+      background-color: transparent;
+
+      &::placeholder {
+        color: var(--color-text-1);
+      }
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  }
+}

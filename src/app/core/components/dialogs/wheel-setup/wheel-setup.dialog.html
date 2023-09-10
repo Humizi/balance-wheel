@@ -1,7 +1,14 @@
-<div *ngIf="step$ | async as step">
-  <p>wheel-setup works!</p>
+<div *ngIf="step$ | async as step" class="setup-dialog">
   <p>Step {{ step }}</p>
 
-  <button app-button (click)="prevStep()">Prev Step</button>
-  <button app-button (click)="nextStep()">Next Step</button>
+  <app-first-step *ngIf="step === 1"></app-first-step>
+
+  <div *ngIf="step > 1">
+    <app-area-life></app-area-life>
+  </div>
+
+  <footer class="setup-dialog__footer">
+    <button app-button (click)="prevStep()">Prev Step</button>
+    <button app-button (click)="nextStep()">Next Step</button>
+  </footer>
 </div>
