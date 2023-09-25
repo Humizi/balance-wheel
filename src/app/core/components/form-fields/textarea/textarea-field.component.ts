@@ -38,9 +38,9 @@ import { Subscription } from 'rxjs';
 export class TextareaFieldComponent
   implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy
 {
+  @Input() label = 'Textarea Field';
   @Input() placeholder = 'Enter text...';
   @Input() disabled = false;
-  @Input() transparent = false;
 
   public data!: string;
   private control!: UntypedFormControl;

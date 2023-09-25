@@ -1,0 +1,13 @@
+<div class="color-field">
+  <label class="color-field__inner">
+    <span class="color-field__label">{{ label }}</span>
+
+    <input
+      class="color-field__input"
+      type="color"
+      [ngModel]="data"
+      (ngModelChange)="changeData($event)"
+      [disabled]="disabled"
+    />
+  </label>
+</div>

@@ -13,4 +13,10 @@
   &__title {
     @include typo--h2;
   }
+
+  &__field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }

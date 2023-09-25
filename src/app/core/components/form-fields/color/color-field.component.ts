@@ -19,27 +19,26 @@ import {
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-text-field',
-  templateUrl: './text-field.component.html',
-  styleUrls: ['./text-field.component.scss'],
+  selector: 'app-color-field',
+  templateUrl: './color-field.component.html',
+  styleUrls: ['./color-field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => TextFieldComponent),
+      useExisting: forwardRef(() => ColorFieldComponent),
       multi: true,
     },
     {
       provide: NgControl,
-      useExisting: forwardRef(() => TextFieldComponent),
+      useExisting: forwardRef(() => ColorFieldComponent),
     },
   ],
 })
-export class TextFieldComponent
+export class ColorFieldComponent
   implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy
 {
-  @Input() label = 'Text Field';
-  @Input() placeholder = 'Enter text...';
+  @Input() label = 'Color Field';
   @Input() disabled = false;
 
   public data!: string;

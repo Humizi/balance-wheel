@@ -8,19 +8,19 @@
     position: relative;
     margin-top: 14px;
 
-    &.--transparent {
-      background-color: transparent;
-
-      .text-field__input {
-        color: var(--color-text-main);
-
-        &::placeholder {
-          color: var(--color-text-main);
-        }
-      }
+    &__inner {
+      display: flex;
+      flex-direction: column;
     }
 
-    &__inner {
+    &__label {
+      margin-bottom: 6px;
+
+      @include typo--regular-12;
+      color: var(--color-text-main);
+    }
+
+    &__body {
       display: flex;
       align-items: center;
     }
@@ -29,15 +29,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 30px;
-      height: 30px;
-      margin: 0 5px;
+      width: 40px;
+      height: 40px;
+      margin: 0 8px;
 
       background-color: var(--color-gray-main);
       border: 1px solid var(--color-cyan-main);
       border-radius: 6px;
 
-      @include typo--regular-12;
+      @include typo--regular-15;
       text-align: center;
       color: var(--color-text-main);
 
@@ -56,10 +56,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 20px;
-      height: 20px;
+      width: 30px;
+      height: 30px;
 
-      @include typo--regular-12;
+      @include typo--regular-15;
 
       background-color: var(--color-gray-main);
       border: 1px solid var(--color-cyan-main);

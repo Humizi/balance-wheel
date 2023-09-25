@@ -12,21 +12,30 @@
       <app-text-field
         [formControl]="getAreaControl(step - 2).get('title')"
         placeholder="Area Name"
+        label="Название сферы"
       ></app-text-field>
 
-      <app-number-field
-        [formControl]="getAreaControl(step - 2).get('point')"
-      ></app-number-field>
+      <div class="area-life__field">
+        <app-number-field
+          [formControl]="getAreaControl(step - 2).get('point')"
+          label="Ваше текущее состояние"
+        ></app-number-field>
+
+        <app-color-field
+          [formControl]="getAreaControl(step - 2).get('color')"
+          label="Цвет графика"
+        ></app-color-field>
+      </div>
 
       <app-textarea-field
         [formControl]="getAreaControl(step - 2).get('title')"
+        label="Описание оценки 1"
       ></app-textarea-field>
 
-      <input
-        type="color"
-        formControlName="color"
-        [value]="getAreaControl(step - 2).value.color"
-      />
+      <app-textarea-field
+        [formControl]="getAreaControl(step - 2).get('title')"
+        label="Описание оценки 10"
+      ></app-textarea-field>
     </div>
   </ng-container>
 </form>

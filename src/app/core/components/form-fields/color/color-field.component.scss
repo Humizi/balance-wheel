@@ -2,9 +2,8 @@
 
 :host {
   display: block;
-  max-width: 100%;
 
-  .text-field {
+  .color-field {
     margin-top: 14px;
 
     &__inner {
@@ -20,22 +19,33 @@
     }
 
     &__input {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
       position: relative;
       display: block;
-      max-width: 100%;
+      width: 40px;
       height: 40px;
-      padding: 11px 14px;
-
-      @include typo--regular-15;
-      color: var(--color-text-main);
+      padding: 5px;
 
       background-color: var(--color-gray-main);
       border: 1px solid var(--color-cyan-main);
       border-radius: 6px;
-
-      &::placeholder {
-        color: var(--color-text-main);
-      }
     }
+  }
+
+  .color-field__input::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+
+  .color-field__input::-webkit-color-swatch {
+    border-radius: 6px;
+    border: none;
+  }
+
+  .color-field__input::-moz-color-swatch {
+    border-radius: 6px;
+    border: none;
   }
 }

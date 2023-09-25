@@ -38,6 +38,7 @@ import { Subscription } from 'rxjs';
 export class NumberFieldComponent
   implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy
 {
+  @Input() label = 'Number Field';
   @Input() placeholder = 'Enter text...';
   @Input() disabled = false;
   @Input() transparent = false;
@@ -92,10 +93,14 @@ export class NumberFieldComponent
   }
 
   increase(): void {
-    this.data = this.data + 1;
+    if (this.data < 10) {
+      this.data = this.data + 1;
+    }
   }
 
   decrease(): void {
-    this.data = this.data - 1;
+    if (this.data > 1) {
+      this.data = this.data - 1;
+    }
   }
 }

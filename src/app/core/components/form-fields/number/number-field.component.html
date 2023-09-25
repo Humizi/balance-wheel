@@ -1,18 +1,22 @@
 <div class="number-field" [class.--transparent]="transparent">
   <label class="number-field__inner">
-    <button class="number-field__button" (click)="decrease()">-</button>
+    <span class="number-field__label">{{ label }}</span>
 
-    <input
-      class="number-field__input"
-      type="number"
-      min="1"
-      max="10"
-      [placeholder]="placeholder"
-      [ngModel]="data"
-      (ngModelChange)="changeData($event)"
-      [disabled]="disabled"
-    />
+    <div class="number-field__body">
+      <button class="number-field__button" (click)="decrease()">-</button>
 
-    <button class="number-field__button" (click)="increase()">+</button>
+      <input
+        class="number-field__input"
+        type="number"
+        min="1"
+        max="10"
+        [placeholder]="placeholder"
+        [ngModel]="data"
+        (ngModelChange)="changeData($event)"
+        [disabled]="true"
+      />
+
+      <button class="number-field__button" (click)="increase()">+</button>
+    </div>
   </label>
 </div>

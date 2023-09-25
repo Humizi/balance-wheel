@@ -5,37 +5,32 @@
   max-width: 100%;
 
   .textarea-field {
-    position: relative;
-    display: block;
-    max-width: 100%;
     margin-top: 14px;
-    padding: 7px 12px;
-
-    background-color: var(--color-gray-main);
-    border: 1px solid var(--color-cyan-main);
-    border-radius: 6px;
-
-    &.--transparent {
-      background-color: transparent;
-
-      .textarea-field__input {
-        color: var(--color-text-main);
-
-        &::placeholder {
-          color: var(--color-text-main);
-        }
-      }
-    }
 
     &__inner {
       display: flex;
+      flex-direction: column;
+    }
+
+    &__label {
+      margin-bottom: 6px;
+
+      @include typo--regular-12;
+      color: var(--color-text-main);
     }
 
     &__input {
-      @include typo--regular-13;
+      position: relative;
+      display: block;
+      max-width: 100%;
+      padding: 11px 14px;
+
+      @include typo--regular-15;
       color: var(--color-text-main);
 
-      background-color: transparent;
+      background-color: var(--color-gray-main);
+      border: 1px solid var(--color-cyan-main);
+      border-radius: 6px;
 
       &::placeholder {
         color: var(--color-text-main);
