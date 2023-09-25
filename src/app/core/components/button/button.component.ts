@@ -19,11 +19,9 @@ import { TSizes, TTheme } from './button.interfaces';
   encapsulation: ViewEncapsulation.None,
 })
 export class ButtonComponent implements OnInit, OnChanges {
-  @HostBinding('class.button--stroked') @Input() stroked = false;
   @HostBinding('class.button--disabled')
   @HostBinding('attr.disabled')
   isDisabled: true | null = null;
-  @HostBinding('class.button--transparent') @Input() transparent = false;
 
   @Input() size: TSizes = 'large';
   @Input() color: TTheme = 'blue';
