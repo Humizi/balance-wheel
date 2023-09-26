@@ -14,6 +14,7 @@ Chart.register(...registerables);
 })
 export class HomepageComponent implements OnInit {
   public chart: any;
+  public settings = DEFAULT_SETTINGS;
 
   constructor(
     private viewContainerRef: ViewContainerRef,
@@ -28,12 +29,12 @@ export class HomepageComponent implements OnInit {
 
   createChart() {
     const data = {
-      labels: DEFAULT_SETTINGS.map((item) => item.title || ''),
+      labels: this.settings.map((item) => item.title || ''),
       datasets: [
         {
           label: 'My First Dataset',
-          data: DEFAULT_SETTINGS.map((item) => item.point || 1),
-          backgroundColor: DEFAULT_SETTINGS.map((item) => item.color || ''),
+          data: this.settings.map((item) => item.point || 1),
+          backgroundColor: this.settings.map((item) => item.color || ''),
         },
       ],
     };

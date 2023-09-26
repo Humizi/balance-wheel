@@ -12,7 +12,7 @@ export const DEFAULT_SETTINGS: ICategory[] = [
   {
     title: 'Здоровье',
     point: 3,
-    color: '#7CB5EC',
+    color: '#87F03C',
     grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',
@@ -21,7 +21,7 @@ export const DEFAULT_SETTINGS: ICategory[] = [
   {
     title: 'Работа',
     point: 7,
-    color: '#7CB5EC',
+    color: '#0B5FA5',
     grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',
@@ -30,7 +30,7 @@ export const DEFAULT_SETTINGS: ICategory[] = [
   {
     title: 'Финансы',
     point: 7,
-    color: '#7CB5EC',
+    color: '#2B8E00',
     grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',
@@ -39,7 +39,7 @@ export const DEFAULT_SETTINGS: ICategory[] = [
   {
     title: 'Отношения',
     point: 10,
-    color: '#7CB5EC',
+    color: '#F03C79',
     grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',
@@ -48,7 +48,7 @@ export const DEFAULT_SETTINGS: ICategory[] = [
   {
     title: 'Друзья',
     point: 9,
-    color: '#7CB5EC',
+    color: '#FF8940',
     grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',
@@ -57,7 +57,7 @@ export const DEFAULT_SETTINGS: ICategory[] = [
   {
     title: 'Саморазвитие',
     point: 4,
-    color: '#7CB5EC',
+    color: '#F10026',
     grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',
@@ -66,7 +66,7 @@ export const DEFAULT_SETTINGS: ICategory[] = [
   {
     title: 'Творчество',
     point: 1,
-    color: '#7CB5EC',
+    color: '#FFEC40',
     grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',
@@ -75,7 +75,7 @@ export const DEFAULT_SETTINGS: ICategory[] = [
   {
     title: 'Отдых',
     point: 2,
-    color: '#7CB5EC',
+    color: '#3BA3D0',
     grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',

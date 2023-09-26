@@ -9,6 +9,15 @@
 
   <div class="chart" id="container"></div>
 
+  <div class="legend">
+    <ul class="legend__list">
+      <li *ngFor="let item of settings" class="legend__item">
+        <p class="legend__title">{{ item.title }}</p>
+        <div class="legend__color" [style.background-color]="item.color"></div>
+      </li>
+    </ul>
+  </div>
+
   <button app-button type="button" size="full" (click)="openWheelSetup()">
     Настроить колесо
   </button>

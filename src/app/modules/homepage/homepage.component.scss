@@ -13,3 +13,30 @@
   width: 100%;
   margin: 40px 0;
 }
+
+.legend {
+  width: 100%;
+  margin-bottom: 20px;
+
+  &__list {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 50% 50%;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    width: 75%;
+  }
+
+  &__color {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+  }
+}
