@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { AppEffects } from './app.effects';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { DatabaseService } from './core/services/database/database.service';
 import { EffectsModule } from '@ngrx/effects';
 import { NgModule } from '@angular/core';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -24,6 +25,7 @@ import { environment } from '../environments/environment';
     }),
     EffectsModule.forRoot([AppEffects]),
   ],
+  providers: [DatabaseService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

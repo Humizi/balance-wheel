@@ -12,11 +12,13 @@
   </div>
 
   <footer class="setup-dialog__footer">
-    <button app-button (click)="prevStep()" [disabled]="step === 1">
-      Prev Step
-    </button>
-    <button app-button (click)="nextStep()" [disabled]="step === 10">
-      Next Step
-    </button>
+    <ng-container *ngIf="step !== 10">
+      <button app-button (click)="prevStep()" [disabled]="step === 1">
+        Prev Step
+      </button>
+      <button app-button (click)="nextStep()">Next Step</button>
+    </ng-container>
+
+    <button *ngIf="step === 10" app-button (click)="save()">Save</button>
   </footer>
 </div>

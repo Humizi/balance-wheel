@@ -5,6 +5,7 @@ import {
   stepSelector,
 } from 'src/app/reducers/wizard';
 
+import { DatabaseService } from 'src/app/core/services/database/database.service';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -15,7 +16,7 @@ import { Store } from '@ngrx/store';
 export class WheelSetupDialog {
   public step$ = this.store.select(stepSelector);
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private databaseService: DatabaseService) {}
 
   nextStep(): void {
     this.store.dispatch(increaseStep());
@@ -23,5 +24,11 @@ export class WheelSetupDialog {
 
   prevStep(): void {
     this.store.dispatch(decreaseStep());
+  }
+
+  save(): void {
+    this.databaseService.connect().then((value) => {
+      console.log('VALUE: ', value);
+    });
   }
 }

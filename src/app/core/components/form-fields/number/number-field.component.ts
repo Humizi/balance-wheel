@@ -95,12 +95,14 @@ export class NumberFieldComponent
   increase(): void {
     if (this.data < 10) {
       this.data = this.data + 1;
+      this.changeData(this.data);
     }
   }
 
   decrease(): void {
     if (this.data > 1) {
       this.data = this.data - 1;
+      this.changeData(this.data);
     }
   }
 }

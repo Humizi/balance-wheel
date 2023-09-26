@@ -13,7 +13,7 @@
 
   <div class="legend">
     <ul class="legend__list">
-      <li *ngFor="let item of settings" class="legend__item">
+      <li *ngFor="let item of areas.areas" class="legend__item">
         <p class="legend__title">{{ item.title }}</p>
         <div class="legend__color" [style.background-color]="item.color"></div>
       </li>

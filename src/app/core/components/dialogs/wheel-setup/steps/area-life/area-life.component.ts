@@ -1,7 +1,7 @@
+import { AreasState, areasSelector, updateData } from 'src/app/reducers/areas';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { FormArray, FormBuilder } from '@angular/forms';
 
-import { DEFAULT_SETTINGS } from 'src/app/default-settings';
 import { Store } from '@ngrx/store';
 import { stepSelector } from 'src/app/reducers/wizard';
 
@@ -12,28 +12,35 @@ import { stepSelector } from 'src/app/reducers/wizard';
 })
 export class AreaLifeComponent implements OnInit {
   public step$ = this.store.select(stepSelector);
+  public areas$ = this.store.select(areasSelector);
   public form = this.fb.group({
     areas: this.fb.array([]),
   });
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(private fb: FormBuilder, private store: Store) {
+    this.areas$
+      .subscribe((data) => {
+        data.areas.forEach((item) => {
+          const area = this.fb.group({
+            title: item.title,
+            point: item.point,
+            color: item.color,
+            grade_1_desc: item.grade_1_desc,
+            grade_10_desc: item.grade_10_desc,
+            grade_current_desc: item.grade_current_desc,
+            grade_next_desc: item.grade_next_desc,
+          });
+
+          this.areas.push(area);
+        });
+      })
+      .unsubscribe();
+  }
 
   ngOnInit(): void {
-    DEFAULT_SETTINGS.forEach((item) => {
-      const area = this.fb.group({
-        title: item.title,
-        point: item.point,
-        color: item.color,
-        grade_1_desc: item.grade_1_desc,
-        grade_10_desc: item.grade_10_desc,
-        grade_current_desc: item.grade_current_desc,
-        grade_next_desc: item.grade_next_desc,
-      });
-
-      this.areas.push(area);
+    this.form.valueChanges.subscribe((data) => {
+      this.store.dispatch(updateData(data as AreasState));
     });
-
-    console.log('FORM: ', this.form);
   }
 
   get areas(): FormArray {
