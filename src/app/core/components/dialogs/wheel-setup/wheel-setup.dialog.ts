@@ -3,6 +3,7 @@ import { areasSelector, saveAreas } from 'src/app/reducers/areas';
 import {
   decreaseStep,
   increaseStep,
+  resetStep,
   stepSelector,
 } from 'src/app/reducers/wizard';
 
@@ -40,6 +41,7 @@ export class WheelSetupDialog {
       .subscribe((data) => {
         this.databaseService.saveAreas(data).then(() => {
           this.store.dispatch(saveAreas());
+          this.store.dispatch(resetStep());
           this.dialogService.close(this.dialogID);
         });
       })
