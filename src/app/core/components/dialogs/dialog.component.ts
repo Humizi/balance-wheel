@@ -31,6 +31,8 @@ export class DialogComponent<T> {
         dialogReference.instance[key] = this.data[key];
       }
     }
+
+    dialogReference.instance.dialogID = this.dialogID;
   }
 
   close(): void {

@@ -1,4 +1,4 @@
-import { AreasState, areasSelector, updateData } from 'src/app/reducers/areas';
+import { AreasState, areasSelector, updateAreas } from 'src/app/reducers/areas';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 
@@ -39,7 +39,7 @@ export class AreaLifeComponent implements OnInit {
 
   ngOnInit(): void {
     this.form.valueChanges.subscribe((data) => {
-      this.store.dispatch(updateData(data as AreasState));
+      this.store.dispatch(updateAreas(data as AreasState));
     });
   }
 

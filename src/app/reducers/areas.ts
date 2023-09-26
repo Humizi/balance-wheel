@@ -7,7 +7,8 @@ import {
   props,
 } from '@ngrx/store';
 
-export const updateData = createAction('[AREAS] Update', props<AreasState>());
+export const updateAreas = createAction('[AREAS] Update', props<AreasState>());
+export const saveAreas = createAction('[AREAS] Save');
 
 export interface AreasState {
   areas: {
@@ -100,9 +101,12 @@ export const initialAreasState: AreasState = {
 
 export const areasReducer = createReducer(
   initialAreasState,
-  on(updateData, (state, action) => ({
+  on(updateAreas, (state, action) => ({
     ...state,
     areas: action.areas,
+  })),
+  on(saveAreas, (state) => ({
+    ...state,
   }))
 );
 

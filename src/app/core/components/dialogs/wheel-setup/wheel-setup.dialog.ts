@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { areasSelector, saveAreas } from 'src/app/reducers/areas';
 import {
   decreaseStep,
   increaseStep,
@@ -6,6 +7,7 @@ import {
 } from 'src/app/reducers/wizard';
 
 import { DatabaseService } from 'src/app/core/services/database/database.service';
+import { DialogService } from 'src/app/core/services/dialog/dialog.service';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -14,9 +16,16 @@ import { Store } from '@ngrx/store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WheelSetupDialog {
-  public step$ = this.store.select(stepSelector);
+  @Input() dialogID!: string;
 
-  constructor(private store: Store, private databaseService: DatabaseService) {}
+  public step$ = this.store.select(stepSelector);
+  public areas$ = this.store.select(areasSelector);
+
+  constructor(
+    private store: Store,
+    private databaseService: DatabaseService,
+    private dialogService: DialogService
+  ) {}
 
   nextStep(): void {
     this.store.dispatch(increaseStep());
@@ -27,8 +36,13 @@ export class WheelSetupDialog {
   }
 
   save(): void {
-    this.databaseService.connect().then((value) => {
-      console.log('VALUE: ', value);
-    });
+    this.areas$
+      .subscribe((data) => {
+        this.databaseService.saveAreas(data).then(() => {
+          this.store.dispatch(saveAreas());
+          this.dialogService.close(this.dialogID);
+        });
+      })
+      .unsubscribe();
   }
 }
