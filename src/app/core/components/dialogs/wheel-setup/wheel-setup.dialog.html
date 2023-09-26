@@ -4,16 +4,18 @@
 
     <app-first-step *ngIf="step === 1"></app-first-step>
 
-    <div *ngIf="step > 1">
+    <div *ngIf="step > 1 && step < 10">
       <app-area-life></app-area-life>
     </div>
+
+    <app-last-step *ngIf="step === 10"></app-last-step>
   </div>
 
   <footer class="setup-dialog__footer">
     <button app-button (click)="prevStep()" [disabled]="step === 1">
       Prev Step
     </button>
-    <button app-button (click)="nextStep()" [disabled]="step === 9">
+    <button app-button (click)="nextStep()" [disabled]="step === 10">
       Next Step
     </button>
   </footer>
