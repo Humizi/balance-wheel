@@ -1,10 +1,12 @@
 <div *ngIf="step$ | async as step" class="setup-dialog">
-  <p>Step {{ step }}</p>
+  <div class="setup-dialog__content">
+    <p>Step {{ step }}</p>
 
-  <app-first-step *ngIf="step === 1"></app-first-step>
+    <app-first-step *ngIf="step === 1"></app-first-step>
 
-  <div *ngIf="step > 1">
-    <app-area-life></app-area-life>
+    <div *ngIf="step > 1">
+      <app-area-life></app-area-life>
+    </div>
   </div>
 
   <footer class="setup-dialog__footer">
