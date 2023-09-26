@@ -1,15 +1,11 @@
-import * as Highcharts from 'highcharts';
-
+import { Chart, registerables } from 'chart.js';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 
 import { DEFAULT_SETTINGS } from '../../default-settings';
 import { DialogService } from 'src/app/core/services/dialog/dialog.service';
-import HighchartsMore from 'highcharts/highcharts-more';
-import HighchartsSolidGauge from 'highcharts/modules/solid-gauge';
 import { WheelSetupDialog } from 'src/app/core/components/dialogs/wheel-setup/wheel-setup.dialog';
 
-HighchartsMore(Highcharts);
-HighchartsSolidGauge(Highcharts);
+Chart.register(...registerables);
 
 @Component({
   selector: 'app-homepage',
@@ -17,7 +13,7 @@ HighchartsSolidGauge(Highcharts);
   styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent implements OnInit {
-  public chart!: Highcharts.Chart;
+  public chart: any;
 
   constructor(
     private viewContainerRef: ViewContainerRef,
@@ -31,71 +27,39 @@ export class HomepageComponent implements OnInit {
   }
 
   createChart() {
-    this.chart = Highcharts.chart('container', {
-      chart: {
-        polar: true,
-        type: 'column',
-        backgroundColor: '#eef5ff',
-      },
-      credits: {
-        enabled: false,
-      },
-      title: {
-        text: undefined,
-      },
-      xAxis: {
-        categories: DEFAULT_SETTINGS.map((item) => item.title || ''),
-        tickmarkPlacement: 'on',
-      },
-      yAxis: {
-        labels: {
-          enabled: false,
-        },
-        gridLineInterpolation: 'circle',
-        tickInterval: 1,
-        min: 0,
-        max: 10,
-      },
-      plotOptions: {
-        column: {
-          pointPadding: 0,
-          groupPadding: 0,
-        },
-      },
-      tooltip: {
-        shared: true,
-        pointFormat:
-          '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>',
-      },
-      legend: {
-        enabled: false,
-      },
-      series: [
+    const data = {
+      labels: DEFAULT_SETTINGS.map((item) => item.title || ''),
+      datasets: [
         {
-          type: 'column',
-          name: 'Column',
-          data: DEFAULT_SETTINGS.map((item) => item.point),
-          pointPlacement: 'between',
+          label: 'My First Dataset',
+          data: DEFAULT_SETTINGS.map((item) => item.point || 1),
+          backgroundColor: DEFAULT_SETTINGS.map((item) => item.color || ''),
         },
       ],
-      responsive: {
-        rules: [
-          {
-            condition: {
-              maxWidth: 500,
-            },
-            chartOptions: {
-              legend: {
-                align: 'center',
-                verticalAlign: 'bottom',
-                layout: 'horizontal',
-              },
-              pane: {
-                size: '70%',
-              },
+    };
+
+    this.chart = new Chart('MyChart', {
+      type: 'polarArea',
+      data: data,
+      options: {
+        responsive: true,
+        scales: {
+          r: {
+            min: 0,
+            max: 10,
+            ticks: {
+              display: false,
+              stepSize: 1,
             },
           },
-        ],
+        },
+        plugins: {
+          legend: {
+            display: false,
+            // position: 'bottom',
+            // align: 'start',
+          },
+        },
       },
     });
   }

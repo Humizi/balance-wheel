@@ -16,7 +16,7 @@ export const DEFAULT_SETTINGS: ICategory[] = [
     grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',
-    grade_next_desc: 'Norm'
+    grade_next_desc: 'Norm',
   },
   {
     title: 'Работа',
@@ -25,60 +25,60 @@ export const DEFAULT_SETTINGS: ICategory[] = [
     grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',
-    grade_next_desc: 'Norm'
+    grade_next_desc: 'Norm',
   },
   {
     title: 'Финансы',
     point: 7,
     color: '#7CB5EC',
-        grade_1_desc: 'Norm',
+    grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',
-    grade_next_desc: 'Norm'
+    grade_next_desc: 'Norm',
   },
   {
     title: 'Отношения',
     point: 10,
     color: '#7CB5EC',
-        grade_1_desc: 'Norm',
+    grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',
-    grade_next_desc: 'Norm'
+    grade_next_desc: 'Norm',
   },
   {
     title: 'Друзья',
-    point: 5,
+    point: 9,
     color: '#7CB5EC',
-        grade_1_desc: 'Norm',
+    grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',
-    grade_next_desc: 'Norm'
+    grade_next_desc: 'Norm',
   },
   {
     title: 'Саморазвитие',
     point: 4,
     color: '#7CB5EC',
-        grade_1_desc: 'Norm',
+    grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',
-    grade_next_desc: 'Norm'
+    grade_next_desc: 'Norm',
   },
   {
     title: 'Творчество',
     point: 1,
     color: '#7CB5EC',
-        grade_1_desc: 'Norm',
+    grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',
-    grade_next_desc: 'Norm'
+    grade_next_desc: 'Norm',
   },
   {
     title: 'Отдых',
     point: 2,
     color: '#7CB5EC',
-        grade_1_desc: 'Norm',
+    grade_1_desc: 'Norm',
     grade_10_desc: 'Norm',
     grade_current_desc: 'Norm',
-    grade_next_desc: 'Norm'
+    grade_next_desc: 'Norm',
   },
 ];
