@@ -11,7 +11,7 @@
 
   <div class="chart" id="container"></div>
 
-  <div class="legend">
+  <div *ngIf="!isLoading" class="legend">
     <ul class="legend__list">
       <li *ngFor="let item of areas.areas" class="legend__item">
         <p class="legend__title">{{ item.title }}</p>

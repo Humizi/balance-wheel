@@ -1,8 +1,9 @@
-import { AreasState, areasSelector } from 'src/app/reducers/areas';
+import { AreasState, areasSelector, updateAreas } from 'src/app/reducers/areas';
 import { Chart, registerables } from 'chart.js';
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 
 import { Actions } from '@ngrx/effects';
+import { DatabaseService } from 'src/app/core/services/database/database.service';
 import { DialogService } from 'src/app/core/services/dialog/dialog.service';
 import { Store } from '@ngrx/store';
 import { WheelSetupDialog } from 'src/app/core/components/dialogs/wheel-setup/wheel-setup.dialog';
@@ -14,40 +15,47 @@ Chart.register(...registerables);
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
 })
-export class HomepageComponent implements OnInit {
+export class HomepageComponent {
   public chart: any;
   public areas$ = this.store.select(areasSelector);
   public areas!: AreasState;
+  public isLoading = true;
 
   constructor(
     private viewContainerRef: ViewContainerRef,
     private dialogService: DialogService,
     private store: Store,
-    private actions: Actions
+    private actions: Actions,
+    private databaseService: DatabaseService
   ) {
     this.dialogService.setContainer(this.viewContainerRef);
 
-    this.areas$
-      .subscribe((data) => {
-        this.areas = data;
-      })
-      .unsubscribe();
-
-    this.actions.subscribe((action) => {
-      if (action.type === '[AREAS] Save') {
-        this.areas$
-          .subscribe((data) => {
-            this.areas = data;
-            this.chart.data = this.getChartData();
-            this.chart.update();
-          })
-          .unsubscribe();
+    this.databaseService.getAreas().then((value) => {
+      if (value) {
+        this.store.dispatch(updateAreas(value));
       }
-    });
-  }
 
-  ngOnInit(): void {
-    this.createChart();
+      this.areas$
+        .subscribe((data) => {
+          this.areas = data;
+        })
+        .unsubscribe();
+
+      this.actions.subscribe((action) => {
+        if (action.type === '[AREAS] Save') {
+          this.areas$
+            .subscribe((data) => {
+              this.areas = data;
+              this.chart.data = this.getChartData();
+              this.chart.update();
+            })
+            .unsubscribe();
+        }
+      });
+
+      this.isLoading = false;
+      this.createChart();
+    });
   }
 
   getChartData() {

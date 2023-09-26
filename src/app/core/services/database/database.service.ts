@@ -36,4 +36,18 @@ export class DatabaseService {
         });
     });
   }
+
+  getAreas(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.connect().then((value) => {
+        const transaction = value.transaction('areas', 'readonly');
+        const store = transaction.objectStore('areas');
+        const request = store.get('areasData');
+
+        return (request.onsuccess = () => resolve(request.result));
+      });
+    }).then((value) => {
+      return value;
+    });
+  }
 }
