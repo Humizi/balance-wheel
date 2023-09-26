@@ -35,6 +35,7 @@ export class HomepageComponent implements OnInit {
       chart: {
         polar: true,
         type: 'column',
+        backgroundColor: '#eef5ff',
       },
       credits: {
         enabled: false,
