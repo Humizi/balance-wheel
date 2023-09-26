@@ -39,7 +39,7 @@ export class HomepageComponent implements OnInit {
       ],
     };
 
-    this.chart = new Chart('MyChart', {
+    this.chart = new Chart('chart', {
       type: 'polarArea',
       data: data,
       options: {

@@ -1,4 +1,4 @@
-.wrapper {
+.homepage {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,6 +7,14 @@
   padding: 20px 15px;
 
   background-color: var(--color-light-blue-main);
+
+  &__title {
+    margin-bottom: 15px;
+  }
+
+  &__subtitle {
+    text-align: center;
+  }
 }
 
 .chart-container {
