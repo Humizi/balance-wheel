@@ -1,6 +1,6 @@
 <div *ngIf="step$ | async as step" class="setup-dialog">
   <div class="setup-dialog__content">
-    <p>Step {{ step }}</p>
+    <app-step-bar [currentStep]="step"></app-step-bar>
 
     <app-first-step *ngIf="step === 1"></app-first-step>
 
@@ -10,7 +10,11 @@
   </div>
 
   <footer class="setup-dialog__footer">
-    <button app-button (click)="prevStep()">Prev Step</button>
-    <button app-button (click)="nextStep()">Next Step</button>
+    <button app-button (click)="prevStep()" [disabled]="step === 1">
+      Prev Step
+    </button>
+    <button app-button (click)="nextStep()" [disabled]="step === 9">
+      Next Step
+    </button>
   </footer>
 </div>
