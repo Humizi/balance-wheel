@@ -13,10 +13,6 @@
 
   overflow: auto;
 
-  @include media-breakpoint-up(mx) {
-    overflow: hidden;
-  }
-
   &__close {
     position: absolute;
     top: 17px;
@@ -48,7 +44,7 @@
 
     @include media-breakpoint-up(mx) {
       width: auto;
-      height: auto;
+      min-height: 70%;
       margin: 90px 15%;
       padding: 62px 50px;
     }

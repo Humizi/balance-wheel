@@ -1,26 +1,35 @@
 <main class="homepage">
-  <h1 class="homepage__title">Колесо Баланса</h1>
+  <section class="homepage__section">
+    <div class="homepage__body">
+      <header class="homepage__header">
+        <h1 class="homepage__title">Колесо Баланса</h1>
 
-  <h2 class="homepage__subtitle">
-    Узнайте, где вы находитесь и где вы хотите быть.
-  </h2>
+        <h2 class="homepage__subtitle">
+          Узнайте, где вы находитесь и где вы хотите быть.
+        </h2>
+      </header>
 
-  <div class="chart-container">
-    <canvas id="chart"></canvas>
-  </div>
+      <div class="homepage__chart">
+        <canvas id="chart"></canvas>
+      </div>
+    </div>
 
-  <div class="chart" id="container"></div>
+    <div class="homepage__settings">
+      <div *ngIf="!isLoading" class="homepage__legend legend">
+        <ul class="legend__list">
+          <li *ngFor="let item of areas.areas" class="legend__item">
+            <p class="legend__title">{{ item.title }}</p>
+            <div
+              class="legend__color"
+              [style.background-color]="item.color"
+            ></div>
+          </li>
+        </ul>
+      </div>
 
-  <div *ngIf="!isLoading" class="legend">
-    <ul class="legend__list">
-      <li *ngFor="let item of areas.areas" class="legend__item">
-        <p class="legend__title">{{ item.title }}</p>
-        <div class="legend__color" [style.background-color]="item.color"></div>
-      </li>
-    </ul>
-  </div>
-
-  <button app-button type="button" size="full" (click)="openWheelSetup()">
-    Настроить колесо
-  </button>
+      <button app-button type="button" size="full" (click)="openWheelSetup()">
+        Настроить колесо
+      </button>
+    </div>
+  </section>
 </main>
