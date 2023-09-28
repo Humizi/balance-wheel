@@ -5,7 +5,7 @@
     <app-first-step *ngIf="step === 1"></app-first-step>
 
     <div *ngIf="step > 1 && step < 10">
-      <app-area-life></app-area-life>
+      <app-area-life [step]="step" [areasData]="areas$ | async"></app-area-life>
     </div>
 
     <app-last-step *ngIf="step === 10"></app-last-step>

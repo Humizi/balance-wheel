@@ -13,6 +13,7 @@ import {
 } from 'src/app/core/store/actions/areas.actions';
 import { areasSelector } from 'src/app/core/store/selectors/areas.selectors';
 import { IAreasState } from 'src/app/core/store/models/areas.models';
+import { first } from 'rxjs';
 
 Chart.register(...registerables);
 
@@ -22,7 +23,7 @@ Chart.register(...registerables);
 })
 export class HomePage {
   public chart: any;
-  public areas$ = this.store$.select(areasSelector);
+  public areas$ = this.store$.select(areasSelector).pipe(first());
   public areas!: IAreasState;
   public isLoading = true;
 
@@ -37,29 +38,27 @@ export class HomePage {
 
     this.databaseService.getAreas().then((value) => {
       if (value) {
+        this.areas = value;
         this.store$.dispatch(updateAreas(value));
-      }
-
-      this.areas$
-        .subscribe((data) => {
+      } else {
+        this.areas$.subscribe((data) => {
           this.areas = data;
-        })
-        .unsubscribe();
-
-      this.actions.subscribe((action) => {
-        if (action.type === areasActionsType.save) {
-          this.areas$
-            .subscribe((data) => {
-              this.areas = data;
-              this.chart.data = this.getChartData();
-              this.chart.update();
-            })
-            .unsubscribe();
-        }
-      });
+          this.databaseService.saveAreas(data);
+        });
+      }
 
       this.isLoading = false;
       this.createChart();
+    });
+
+    this.actions.subscribe((action) => {
+      if (action.type === areasActionsType.save) {
+        this.databaseService.getAreas().then((value) => {
+          this.areas = value;
+          this.chart.data = this.getChartData();
+          this.chart.update();
+        });
+      }
     });
   }
 
@@ -126,6 +125,6 @@ export class HomePage {
   }
 
   openAreaEditDialog(areaID: number): void {
-    this.dialogService.open(AreaEditDialog, { areaID });
+    this.dialogService.open(AreaEditDialog, { areaID, areasData: this.areas });
   }
 }

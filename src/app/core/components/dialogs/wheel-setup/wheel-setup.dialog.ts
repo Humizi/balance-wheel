@@ -11,6 +11,8 @@ import {
 import { saveAreas } from 'src/app/core/store/actions/areas.actions';
 import { wizardSelector } from 'src/app/core/store/selectors/wizard.selectors';
 import { areasSelector } from 'src/app/core/store/selectors/areas.selectors';
+import { IAreasState } from 'src/app/core/store/models/areas.models';
+import { tap } from 'rxjs';
 
 @Component({
   templateUrl: './wheel-setup.dialog.html',
@@ -21,7 +23,10 @@ export class WheelSetupDialog {
   @Input() dialogID!: string;
 
   public step$ = this.store$.select(wizardSelector);
-  public areas$ = this.store$.select(areasSelector);
+  public areas$ = this.store$
+    .select(areasSelector)
+    .pipe(tap((data) => (this.areas = data)));
+  public areas!: IAreasState;
 
   constructor(
     private store$: Store,
@@ -38,14 +43,10 @@ export class WheelSetupDialog {
   }
 
   save(): void {
-    this.areas$
-      .subscribe((data) => {
-        this.databaseService.saveAreas(data).then(() => {
-          this.store$.dispatch(saveAreas());
-          this.store$.dispatch(resetStep());
-          this.dialogService.close(this.dialogID);
-        });
-      })
-      .unsubscribe();
+    this.databaseService.saveAreas(this.areas).then(() => {
+      this.store$.dispatch(saveAreas());
+      this.store$.dispatch(resetStep());
+      this.dialogService.close(this.dialogID);
+    });
   }
 }

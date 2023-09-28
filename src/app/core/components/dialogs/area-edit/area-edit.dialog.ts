@@ -8,7 +8,7 @@ import {
   saveAreas,
   updateAreas,
 } from 'src/app/core/store/actions/areas.actions';
-import { areasSelector } from 'src/app/core/store/selectors/areas.selectors';
+import { IAreasState } from 'src/app/core/store/models/areas.models';
 
 @Component({
   templateUrl: './area-edit.dialog.html',
@@ -17,8 +17,8 @@ import { areasSelector } from 'src/app/core/store/selectors/areas.selectors';
 export class AreaEditDialog implements OnInit {
   @Input() areaID!: number;
   @Input() dialogID!: string;
+  @Input() areasData!: IAreasState;
 
-  public areas$ = this.store$.select(areasSelector);
   public form!: FormGroup;
 
   constructor(
@@ -29,22 +29,17 @@ export class AreaEditDialog implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.areas$
-      .subscribe((data) => {
-        const area = data.areas.find((area) => area.id === this.areaID)!;
-
-        this.form = this.fb.group({
-          id: area.id,
-          title: area.title,
-          point: area.point,
-          color: area.color,
-          grade_1_desc: area.grade_1_desc,
-          grade_10_desc: area.grade_10_desc,
-          grade_current_desc: area.grade_current_desc,
-          grade_next_desc: area.grade_next_desc,
-        });
-      })
-      .unsubscribe();
+    const area = this.areasData.areas.find((area) => area.id === this.areaID)!;
+    this.form = this.fb.group({
+      id: area.id,
+      title: area.title,
+      point: area.point,
+      color: area.color,
+      grade_1_desc: area.grade_1_desc,
+      grade_10_desc: area.grade_10_desc,
+      grade_current_desc: area.grade_current_desc,
+      grade_next_desc: area.grade_next_desc,
+    });
   }
 
   get title(): string {
@@ -52,18 +47,14 @@ export class AreaEditDialog implements OnInit {
   }
 
   save(): void {
-    this.areas$
-      .subscribe((data) => {
-        const newData = [...data.areas];
-        const areaIdx = newData.findIndex((area) => area.id === this.areaID);
-        newData.splice(areaIdx, 1, this.form.getRawValue());
+    const newData = [...this.areasData.areas];
+    const areaIdx = newData.findIndex((area) => area.id === this.areaID);
+    newData.splice(areaIdx, 1, this.form.getRawValue());
 
-        this.databaseService.saveAreas({ areas: newData }).then(() => {
-          this.store$.dispatch(updateAreas({ areas: newData }));
-          this.store$.dispatch(saveAreas());
-          this.dialogService.close(this.dialogID);
-        });
-      })
-      .unsubscribe();
+    this.databaseService.saveAreas({ areas: newData }).then(() => {
+      this.store$.dispatch(updateAreas({ areas: newData }));
+      this.store$.dispatch(saveAreas());
+      this.dialogService.close(this.dialogID);
+    });
   }
 }
