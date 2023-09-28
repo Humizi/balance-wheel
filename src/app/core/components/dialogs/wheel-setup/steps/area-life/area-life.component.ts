@@ -22,6 +22,7 @@ export class AreaLifeComponent implements OnInit {
       .subscribe((data) => {
         data.areas.forEach((item) => {
           const area = this.fb.group({
+            id: item.id,
             title: item.title,
             point: item.point,
             color: item.color,

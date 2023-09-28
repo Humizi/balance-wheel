@@ -1,3 +1,4 @@
+import { AreaEditDialogModule } from 'src/app/core/components/dialogs/area-edit/area-edit.module';
 import { ButtonModule } from 'src/app/core/components/button/button.module';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'src/app/core/components/dialogs/dialog.module';
@@ -15,6 +16,7 @@ import { WheelSetupDialogModule } from 'src/app/core/components/dialogs/wheel-se
     ButtonModule,
     DialogModule,
     WheelSetupDialogModule,
+    AreaEditDialogModule,
   ],
   providers: [DialogService],
 })

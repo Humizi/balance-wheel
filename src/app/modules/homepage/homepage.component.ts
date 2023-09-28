@@ -3,6 +3,7 @@ import { Chart, TooltipItem, TooltipModel, registerables } from 'chart.js';
 import { Component, ViewContainerRef } from '@angular/core';
 
 import { Actions } from '@ngrx/effects';
+import { AreaEditDialog } from 'src/app/core/components/dialogs/area-edit/area-edit.dialog';
 import { DatabaseService } from 'src/app/core/services/database/database.service';
 import { DialogService } from 'src/app/core/services/dialog/dialog.service';
 import { Store } from '@ngrx/store';
@@ -116,7 +117,11 @@ export class HomepageComponent {
     });
   }
 
-  openWheelSetup(): void {
+  openWheelSetupDialog(): void {
     this.dialogService.open(WheelSetupDialog);
+  }
+
+  openAreaEditDialog(areaID: number): void {
+    this.dialogService.open(AreaEditDialog, { areaID });
   }
 }

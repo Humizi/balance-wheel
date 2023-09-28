@@ -17,7 +17,11 @@
     <div class="homepage__settings">
       <div *ngIf="!isLoading" class="homepage__legend legend">
         <ul class="legend__list">
-          <li *ngFor="let item of areas.areas" class="legend__item">
+          <li
+            *ngFor="let item of areas.areas"
+            (click)="openAreaEditDialog(item.id)"
+            class="legend__item"
+          >
             <div class="legend__text">
               <p class="legend__title">{{ item.title }}:</p>
               <span>{{ item.point }}</span>
@@ -31,7 +35,12 @@
         </ul>
       </div>
 
-      <button app-button type="button" size="full" (click)="openWheelSetup()">
+      <button
+        app-button
+        type="button"
+        size="full"
+        (click)="openWheelSetupDialog()"
+      >
         Настроить колесо
       </button>
     </div>

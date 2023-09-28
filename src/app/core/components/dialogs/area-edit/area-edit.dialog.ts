@@ -1,0 +1,65 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { areasSelector, saveAreas, updateAreas } from 'src/app/reducers/areas';
+
+import { DatabaseService } from 'src/app/core/services/database/database.service';
+import { DialogService } from 'src/app/core/services/dialog/dialog.service';
+import { Store } from '@ngrx/store';
+
+@Component({
+  templateUrl: './area-edit.dialog.html',
+  styleUrls: ['./area-edit.dialog.scss'],
+})
+export class AreaEditDialog implements OnInit {
+  @Input() areaID!: number;
+  @Input() dialogID!: string;
+
+  public areas$ = this.store.select(areasSelector);
+  public form!: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+    private databaseService: DatabaseService,
+    private dialogService: DialogService
+  ) {}
+
+  ngOnInit(): void {
+    this.areas$
+      .subscribe((data) => {
+        const area = data.areas.find((area) => area.id === this.areaID)!;
+
+        this.form = this.fb.group({
+          id: area.id,
+          title: area.title,
+          point: area.point,
+          color: area.color,
+          grade_1_desc: area.grade_1_desc,
+          grade_10_desc: area.grade_10_desc,
+          grade_current_desc: area.grade_current_desc,
+          grade_next_desc: area.grade_next_desc,
+        });
+      })
+      .unsubscribe();
+  }
+
+  get title(): string {
+    return this.form.get('title')?.value;
+  }
+
+  save(): void {
+    this.areas$
+      .subscribe((data) => {
+        const newData = [...data.areas];
+        const areaIdx = newData.findIndex((area) => area.id === this.areaID);
+        newData.splice(areaIdx, 1, this.form.getRawValue());
+
+        this.databaseService.saveAreas({ areas: newData }).then(() => {
+          this.store.dispatch(updateAreas({ areas: newData }));
+          this.store.dispatch(saveAreas());
+          this.dialogService.close(this.dialogID);
+        });
+      })
+      .unsubscribe();
+  }
+}

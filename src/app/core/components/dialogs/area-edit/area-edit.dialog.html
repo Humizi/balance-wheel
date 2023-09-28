@@ -1,0 +1,43 @@
+<form [formGroup]="form" class="area-life">
+  <h2 class="area-life__title">Сфера: {{ title }}</h2>
+
+  <app-text-field
+    formControlName="title"
+    placeholder="Area Name"
+    label="Название сферы"
+  ></app-text-field>
+
+  <div class="area-life__field">
+    <app-number-field
+      formControlName="point"
+      label="Ваше текущее состояние"
+    ></app-number-field>
+
+    <app-color-field
+      formControlName="color"
+      label="Цвет графика"
+    ></app-color-field>
+  </div>
+
+  <app-textarea-field
+    formControlName="grade_1_desc"
+    label="Описание оценки 1"
+  ></app-textarea-field>
+
+  <app-textarea-field
+    formControlName="grade_10_desc"
+    label="Описание оценки 10"
+  ></app-textarea-field>
+
+  <app-textarea-field
+    formControlName="grade_current_desc"
+    label="Описание текущей оценки"
+  ></app-textarea-field>
+
+  <app-textarea-field
+    formControlName="grade_next_desc"
+    label="Что необходимо сделать, чтобы перейти не следующий уровень"
+  ></app-textarea-field>
+
+  <button app-button size="full" (click)="save()">Save</button>
+</form>
