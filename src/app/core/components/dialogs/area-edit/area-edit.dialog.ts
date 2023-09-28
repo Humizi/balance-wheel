@@ -1,10 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { areasSelector, saveAreas, updateAreas } from 'src/app/reducers/areas';
 
 import { DatabaseService } from 'src/app/core/services/database/database.service';
 import { DialogService } from 'src/app/core/services/dialog/dialog.service';
 import { Store } from '@ngrx/store';
+import {
+  saveAreas,
+  updateAreas,
+} from 'src/app/core/store/actions/areas.actions';
+import { areasSelector } from 'src/app/core/store/selectors/areas.selectors';
 
 @Component({
   templateUrl: './area-edit.dialog.html',
@@ -14,12 +18,12 @@ export class AreaEditDialog implements OnInit {
   @Input() areaID!: number;
   @Input() dialogID!: string;
 
-  public areas$ = this.store.select(areasSelector);
+  public areas$ = this.store$.select(areasSelector);
   public form!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private store: Store,
+    private store$: Store,
     private databaseService: DatabaseService,
     private dialogService: DialogService
   ) {}
@@ -55,8 +59,8 @@ export class AreaEditDialog implements OnInit {
         newData.splice(areaIdx, 1, this.form.getRawValue());
 
         this.databaseService.saveAreas({ areas: newData }).then(() => {
-          this.store.dispatch(updateAreas({ areas: newData }));
-          this.store.dispatch(saveAreas());
+          this.store$.dispatch(updateAreas({ areas: newData }));
+          this.store$.dispatch(saveAreas());
           this.dialogService.close(this.dialogID);
         });
       })

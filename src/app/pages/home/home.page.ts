@@ -1,4 +1,3 @@
-import { AreasState, areasSelector, updateAreas } from 'src/app/reducers/areas';
 import { Chart, TooltipItem, TooltipModel, registerables } from 'chart.js';
 import { Component, ViewContainerRef } from '@angular/core';
 
@@ -8,24 +7,29 @@ import { DatabaseService } from 'src/app/core/services/database/database.service
 import { DialogService } from 'src/app/core/services/dialog/dialog.service';
 import { Store } from '@ngrx/store';
 import { WheelSetupDialog } from 'src/app/core/components/dialogs/wheel-setup/wheel-setup.dialog';
+import {
+  areasActionsType,
+  updateAreas,
+} from 'src/app/core/store/actions/areas.actions';
+import { areasSelector } from 'src/app/core/store/selectors/areas.selectors';
+import { IAreasState } from 'src/app/core/store/models/areas.models';
 
 Chart.register(...registerables);
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss'],
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
 })
-export class HomepageComponent {
+export class HomePage {
   public chart: any;
-  public areas$ = this.store.select(areasSelector);
-  public areas!: AreasState;
+  public areas$ = this.store$.select(areasSelector);
+  public areas!: IAreasState;
   public isLoading = true;
 
   constructor(
     private viewContainerRef: ViewContainerRef,
     private dialogService: DialogService,
-    private store: Store,
+    private store$: Store,
     private actions: Actions,
     private databaseService: DatabaseService
   ) {
@@ -33,7 +37,7 @@ export class HomepageComponent {
 
     this.databaseService.getAreas().then((value) => {
       if (value) {
-        this.store.dispatch(updateAreas(value));
+        this.store$.dispatch(updateAreas(value));
       }
 
       this.areas$
@@ -43,7 +47,7 @@ export class HomepageComponent {
         .unsubscribe();
 
       this.actions.subscribe((action) => {
-        if (action.type === '[AREAS] Save') {
+        if (action.type === areasActionsType.save) {
           this.areas$
             .subscribe((data) => {
               this.areas = data;

@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 
 import { DialogService } from '../../services/dialog/dialog.service';
-import { TDialogComponent } from '../../services/dialog/dialog.interfaces';
+import { TDialogComponent } from '../../services/dialog/dialog.models';
 
 @Component({
   templateUrl: './dialog.component.html',

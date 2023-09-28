@@ -6,9 +6,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./modules/homepage/homepage.module').then(
-        (m) => m.HomepageModule
-      ),
+      import('./pages/home/home.module').then((m) => m.HomePageModule),
   },
   { path: '**', redirectTo: '' },
 ];

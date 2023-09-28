@@ -9,7 +9,7 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { TSizes, TTheme } from './button.interfaces';
+import { TSizes, TTheme } from './button.models';
 
 @Component({
   selector: 'button[app-button], a[app-button]',

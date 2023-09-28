@@ -1,29 +1,6 @@
-import {
-  createAction,
-  createFeatureSelector,
-  createReducer,
-  createSelector,
-  on,
-  props,
-} from '@ngrx/store';
+import { IAreasState } from '../models/areas.models';
 
-export const updateAreas = createAction('[AREAS] Update', props<AreasState>());
-export const saveAreas = createAction('[AREAS] Save');
-
-export interface AreasState {
-  areas: {
-    id: number;
-    title: string | null;
-    point: number | null;
-    color: string | null;
-    grade_1_desc: string | null;
-    grade_10_desc: string | null;
-    grade_current_desc: string | null;
-    grade_next_desc: string | null;
-  }[];
-}
-
-export const initialAreasState: AreasState = {
+export const initialAreasState: IAreasState = {
   areas: [
     {
       id: 1,
@@ -107,17 +84,3 @@ export const initialAreasState: AreasState = {
     },
   ],
 };
-
-export const areasReducer = createReducer(
-  initialAreasState,
-  on(updateAreas, (state, action) => ({
-    ...state,
-    areas: action.areas,
-  })),
-  on(saveAreas, (state) => ({
-    ...state,
-  }))
-);
-
-export const featureSelector = createFeatureSelector<AreasState>('areas');
-export const areasSelector = createSelector(featureSelector, (state) => state);

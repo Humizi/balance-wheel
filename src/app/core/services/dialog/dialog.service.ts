@@ -1,9 +1,5 @@
 import { Injectable, ComponentRef, ViewContainerRef } from '@angular/core';
-import {
-  TDialogComponent,
-  TDialogData,
-  TDialogRefs,
-} from './dialog.interfaces';
+import { TDialogComponent, TDialogData, TDialogRefs } from './dialog.models';
 import { DialogComponent } from '../../components/dialogs/dialog.component';
 
 @Injectable()

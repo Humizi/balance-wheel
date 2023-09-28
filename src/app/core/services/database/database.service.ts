@@ -1,5 +1,5 @@
-import { AreasState } from 'src/app/reducers/areas';
 import { Injectable } from '@angular/core';
+import { IAreasState } from '../../store/models/areas.models';
 
 @Injectable()
 export class DatabaseService {
@@ -18,7 +18,7 @@ export class DatabaseService {
     });
   }
 
-  saveAreas(areas: AreasState): Promise<any> {
+  saveAreas(areas: IAreasState): Promise<any> {
     return new Promise((resolve, reject) => {
       this.connect()
         .then((value) => {

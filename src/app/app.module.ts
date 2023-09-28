@@ -1,4 +1,4 @@
-import { metaReducers, reducers } from './reducers';
+import { metaReducers, reducers } from './core/store/reducers/index.reducer';
 
 import { AppComponent } from './app.component';
 import { AppEffects } from './app.effects';

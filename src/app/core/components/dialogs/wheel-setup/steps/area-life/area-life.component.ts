@@ -1,9 +1,11 @@
-import { AreasState, areasSelector, updateAreas } from 'src/app/reducers/areas';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 
 import { Store } from '@ngrx/store';
-import { stepSelector } from 'src/app/reducers/wizard';
+import { updateAreas } from 'src/app/core/store/actions/areas.actions';
+import { wizardSelector } from 'src/app/core/store/selectors/wizard.selectors';
+import { areasSelector } from 'src/app/core/store/selectors/areas.selectors';
+import { IAreasState } from 'src/app/core/store/models/areas.models';
 
 @Component({
   selector: 'app-area-life',
@@ -11,13 +13,13 @@ import { stepSelector } from 'src/app/reducers/wizard';
   styleUrls: ['./area-life.component.scss'],
 })
 export class AreaLifeComponent implements OnInit {
-  public step$ = this.store.select(stepSelector);
-  public areas$ = this.store.select(areasSelector);
+  public step$ = this.store$.select(wizardSelector);
+  public areas$ = this.store$.select(areasSelector);
   public form = this.fb.group({
     areas: this.fb.array([]),
   });
 
-  constructor(private fb: FormBuilder, private store: Store) {
+  constructor(private fb: FormBuilder, private store$: Store) {
     this.areas$
       .subscribe((data) => {
         data.areas.forEach((item) => {
@@ -40,7 +42,7 @@ export class AreaLifeComponent implements OnInit {
 
   ngOnInit(): void {
     this.form.valueChanges.subscribe((data) => {
-      this.store.dispatch(updateAreas(data as AreasState));
+      this.store$.dispatch(updateAreas(data as IAreasState));
     });
   }
 
