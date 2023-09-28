@@ -1,5 +1,5 @@
 import { AreasState, areasSelector, updateAreas } from 'src/app/reducers/areas';
-import { Chart, registerables } from 'chart.js';
+import { Chart, TooltipItem, TooltipModel, registerables } from 'chart.js';
 import { Component, ViewContainerRef } from '@angular/core';
 
 import { Actions } from '@ngrx/effects';
@@ -63,7 +63,9 @@ export class HomepageComponent {
       labels: this.areas.areas.map((item) => item.title || ''),
       datasets: [
         {
-          // label: 'My First Dataset',
+          label: this.areas.areas
+            .map((item, idx) => `${idx}-${item.grade_next_desc}`)
+            .join('###'),
           data: this.areas.areas.map((item) => item.point || 1),
           backgroundColor: this.areas.areas.map((item) => item.color || ''),
         },
@@ -90,8 +92,24 @@ export class HomepageComponent {
         plugins: {
           legend: {
             display: false,
-            // position: 'bottom',
-            // align: 'start',
+          },
+          tooltip: {
+            displayColors: false,
+
+            callbacks: {
+              label: function (
+                this: TooltipModel<'polarArea'>,
+                tooltipItem: TooltipItem<'polarArea'>
+              ) {
+                return [
+                  `Текущая оценка сферы ${tooltipItem.formattedValue}.`,
+                  'Для улучшения сферы необходимо: ',
+                  `${tooltipItem.dataset.label
+                    ?.split('###')
+                    [tooltipItem.datasetIndex].slice(2)}`,
+                ];
+              },
+            },
           },
         },
       },

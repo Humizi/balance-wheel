@@ -75,8 +75,14 @@
     align-items: center;
   }
 
-  &__title {
+  &__text {
+    display: flex;
+    align-items: center;
     width: 75%;
+  }
+
+  &__title {
+    margin-right: 6px;
   }
 
   &__color {

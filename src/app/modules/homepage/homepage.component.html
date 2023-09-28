@@ -18,7 +18,11 @@
       <div *ngIf="!isLoading" class="homepage__legend legend">
         <ul class="legend__list">
           <li *ngFor="let item of areas.areas" class="legend__item">
-            <p class="legend__title">{{ item.title }}</p>
+            <div class="legend__text">
+              <p class="legend__title">{{ item.title }}:</p>
+              <span>{{ item.point }}</span>
+            </div>
+
             <div
               class="legend__color"
               [style.background-color]="item.color"
