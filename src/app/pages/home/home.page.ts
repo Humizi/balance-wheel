@@ -1,19 +1,19 @@
 import { Chart, TooltipItem, TooltipModel, registerables } from 'chart.js';
 import { Component, ViewContainerRef } from '@angular/core';
+import {
+  areasActionsType,
+  updateAreas,
+} from 'src/app/core/store/actions/areas.actions';
+import { first, tap } from 'rxjs';
 
 import { Actions } from '@ngrx/effects';
 import { AreaEditDialog } from 'src/app/core/components/dialogs/area-edit/area-edit.dialog';
 import { DatabaseService } from 'src/app/core/services/database/database.service';
 import { DialogService } from 'src/app/core/services/dialog/dialog.service';
+import { IAreasState } from 'src/app/core/store/models/areas.models';
 import { Store } from '@ngrx/store';
 import { WheelSetupDialog } from 'src/app/core/components/dialogs/wheel-setup/wheel-setup.dialog';
-import {
-  areasActionsType,
-  updateAreas,
-} from 'src/app/core/store/actions/areas.actions';
 import { areasSelector } from 'src/app/core/store/selectors/areas.selectors';
-import { IAreasState } from 'src/app/core/store/models/areas.models';
-import { first } from 'rxjs';
 
 Chart.register(...registerables);
 
@@ -41,25 +41,37 @@ export class HomePage {
         this.areas = value;
         this.store$.dispatch(updateAreas(value));
       } else {
-        this.areas$.subscribe((data) => {
-          this.areas = data;
-          this.databaseService.saveAreas(data);
-        });
+        this.areas$
+          .pipe(
+            tap((data) => {
+              this.areas = data;
+              this.databaseService.saveAreas(data);
+            })
+          )
+          .subscribe();
       }
 
       this.isLoading = false;
       this.createChart();
     });
 
-    this.actions.subscribe((action) => {
-      if (action.type === areasActionsType.save) {
-        this.databaseService.getAreas().then((value) => {
-          this.areas = value;
-          this.chart.data = this.getChartData();
-          this.chart.update();
-        });
-      }
-    });
+    this.actions
+      .pipe(
+        tap((action) => {
+          if (action.type === areasActionsType.save) {
+            this.areas$
+              .pipe(
+                tap((data) => {
+                  this.areas = data;
+                  this.chart.data = this.getChartData();
+                  this.chart.update();
+                })
+              )
+              .subscribe();
+          }
+        })
+      )
+      .subscribe();
   }
 
   getChartData() {

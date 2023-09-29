@@ -15,8 +15,7 @@ import {
   NgControl,
   UntypedFormControl,
 } from '@angular/forms';
-
-import { Subscription } from 'rxjs';
+import { Subscription, tap } from 'rxjs';
 
 @Component({
   selector: 'app-number-field',
@@ -59,9 +58,9 @@ export class NumberFieldComponent
 
   ngAfterViewInit(): void {
     this.control = this.ngControl.control as UntypedFormControl;
-    this.statusChanges = this.control.statusChanges.subscribe(() => {
-      this.cd.detectChanges();
-    });
+    this.statusChanges = this.control.statusChanges
+      .pipe(tap(() => this.cd.detectChanges()))
+      .subscribe();
     this.cd.detectChanges();
   }
 

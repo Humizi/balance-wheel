@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 
-import { Store } from '@ngrx/store';
-import { updateAreas } from 'src/app/core/store/actions/areas.actions';
 import { IAreasState } from 'src/app/core/store/models/areas.models';
+import { Store } from '@ngrx/store';
+import { tap } from 'rxjs';
+import { updateAreas } from 'src/app/core/store/actions/areas.actions';
 
 @Component({
   selector: 'app-area-life',
@@ -36,9 +37,11 @@ export class AreaLifeComponent implements OnInit {
       this.areasControlsArray.push(area);
     });
 
-    this.form.valueChanges.subscribe((data) => {
-      this.store$.dispatch(updateAreas(data as IAreasState));
-    });
+    this.form.valueChanges
+      .pipe(
+        tap((data) => this.store$.dispatch(updateAreas(data as IAreasState)))
+      )
+      .subscribe();
   }
 
   get areasControlsArray(): FormArray {
