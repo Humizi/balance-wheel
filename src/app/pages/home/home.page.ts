@@ -11,6 +11,7 @@ import { AreaEditDialog } from 'src/app/core/components/dialogs/area-edit/area-e
 import { DatabaseService } from 'src/app/core/services/database/database.service';
 import { DialogService } from 'src/app/core/services/dialog/dialog.service';
 import { IAreasState } from 'src/app/core/store/models/areas.models';
+import { ResetSettingsDialog } from 'src/app/core/components/dialogs/reset-settings/reset-settings.dialog';
 import { Store } from '@ngrx/store';
 import { WheelSetupDialog } from 'src/app/core/components/dialogs/wheel-setup/wheel-setup.dialog';
 import { areasSelector } from 'src/app/core/store/selectors/areas.selectors';
@@ -138,5 +139,9 @@ export class HomePage {
 
   openAreaEditDialog(areaID: number): void {
     this.dialogService.open(AreaEditDialog, { areaID, areasData: this.areas });
+  }
+
+  reset() {
+    this.dialogService.open(ResetSettingsDialog);
   }
 }

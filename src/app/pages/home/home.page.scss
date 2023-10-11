@@ -1,6 +1,8 @@
 @import "../../../styles/mixins/bootstrap";
 
 .homepage {
+  position: relative;
+
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 68px auto;
@@ -8,6 +10,19 @@
   padding: 20px 15px;
 
   background-color: var(--color-light-blue-main);
+
+  &__reset {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    width: 14px;
+    height: 14px;
+
+    background-image: url("/assets/icons/cross.svg");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+  }
 
   &__header {
     text-align: center;
@@ -62,7 +77,7 @@
   &__list {
     display: grid;
     gap: 10px;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: repeat(2, calc(50% - 5px));
 
     @include media-breakpoint-up(mx) {
       margin-top: 68px;
@@ -72,6 +87,7 @@
 
   &__item {
     display: flex;
+    justify-content: space-between;
     align-items: center;
   }
 
@@ -83,6 +99,10 @@
 
   &__title {
     margin-right: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   &__color {

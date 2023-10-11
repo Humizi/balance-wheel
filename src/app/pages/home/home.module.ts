@@ -6,6 +6,7 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service';
 import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { NgModule } from '@angular/core';
+import { ResetSettingsModule } from 'src/app/core/components/dialogs/reset-settings/reset-settings.module';
 import { WheelSetupDialogModule } from 'src/app/core/components/dialogs/wheel-setup/wheel-setup.module';
 
 @NgModule({
@@ -17,6 +18,7 @@ import { WheelSetupDialogModule } from 'src/app/core/components/dialogs/wheel-se
     DialogModule,
     WheelSetupDialogModule,
     AreaEditDialogModule,
+    ResetSettingsModule,
   ],
   providers: [DialogService],
 })

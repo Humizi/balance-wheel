@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { IAreasState } from '../../store/models/areas.models';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class DatabaseService {
@@ -48,6 +48,13 @@ export class DatabaseService {
       });
     }).then((value) => {
       return value;
+    });
+  }
+
+  reset(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const request = indexedDB.deleteDatabase('balanceDB');
+      request.onsuccess = (event: any) => resolve(event.target.result);
     });
   }
 }
