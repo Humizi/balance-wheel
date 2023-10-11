@@ -118,12 +118,16 @@ export class HomePage {
                 this: TooltipModel<'polarArea'>,
                 tooltipItem: TooltipItem<'polarArea'>
               ) {
+                const strArr =
+                  tooltipItem.dataset.label
+                    ?.split('###')
+                    [tooltipItem.dataIndex].slice(2)
+                    .match(/(.{1,45})/gim) || '';
+
                 return [
                   `Текущая оценка сферы ${tooltipItem.formattedValue}.`,
                   'Для улучшения сферы необходимо: ',
-                  `${tooltipItem.dataset.label
-                    ?.split('###')
-                    [tooltipItem.datasetIndex].slice(2)}`,
+                  ...strArr,
                 ];
               },
             },
