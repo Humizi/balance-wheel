@@ -28,6 +28,7 @@ export class AreaLifeComponent implements OnInit {
         title: item.title,
         point: item.point,
         color: item.color,
+        description: item.description,
         grade_1_desc: item.grade_1_desc,
         grade_10_desc: item.grade_10_desc,
         grade_current_desc: item.grade_current_desc,

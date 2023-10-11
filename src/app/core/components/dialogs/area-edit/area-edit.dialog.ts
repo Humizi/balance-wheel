@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
-import { DatabaseService } from 'src/app/core/services/database/database.service';
-import { DialogService } from 'src/app/core/services/dialog/dialog.service';
-import { Store } from '@ngrx/store';
 import {
   saveAreas,
   updateAreas,
 } from 'src/app/core/store/actions/areas.actions';
+
+import { DatabaseService } from 'src/app/core/services/database/database.service';
+import { DialogService } from 'src/app/core/services/dialog/dialog.service';
 import { IAreasState } from 'src/app/core/store/models/areas.models';
+import { Store } from '@ngrx/store';
 
 @Component({
   templateUrl: './area-edit.dialog.html',
@@ -35,6 +35,7 @@ export class AreaEditDialog implements OnInit {
       title: area.title,
       point: area.point,
       color: area.color,
+      description: area.description,
       grade_1_desc: area.grade_1_desc,
       grade_10_desc: area.grade_10_desc,
       grade_current_desc: area.grade_current_desc,
@@ -44,6 +45,10 @@ export class AreaEditDialog implements OnInit {
 
   get title(): string {
     return this.form.get('title')?.value;
+  }
+
+  get description(): string {
+    return this.form.get('description')?.value;
   }
 
   save(): void {

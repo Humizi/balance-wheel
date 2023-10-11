@@ -6,8 +6,12 @@
       </p>
 
       <h2 class="area-life__title">
-        Сфера: {{ getAreaControl(step)?.value.title }}
+        Сфера: {{ getAreaControl(step).get("title")?.value }}
       </h2>
+
+      <p class="area-life__description">
+        {{ getAreaControl(step).get("description")?.value }}
+      </p>
 
       <app-text-field
         [formControl]="getAreaControl(step).get('title')"

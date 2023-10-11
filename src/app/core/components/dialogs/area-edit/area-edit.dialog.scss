@@ -14,6 +14,13 @@
     @include typo--h2;
   }
 
+  &__description {
+    margin-top: 14px;
+
+    @include typo--regular-13;
+    color: var(--color-text-gray);
+  }
+
   &__field {
     display: flex;
     align-items: center;

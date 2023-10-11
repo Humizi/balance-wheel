@@ -1,6 +1,8 @@
 <form [formGroup]="form" class="area-life">
   <h2 class="area-life__title">Сфера: {{ title }}</h2>
 
+  <p class="area-life__description">{{ description }}</p>
+
   <app-text-field
     formControlName="title"
     placeholder="Area Name"
